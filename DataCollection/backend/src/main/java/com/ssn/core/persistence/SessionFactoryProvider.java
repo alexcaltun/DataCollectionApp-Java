@@ -10,11 +10,13 @@ import java.util.Calendar;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.ssn.practica.model.Answer;
 //import com.ssn.practica.model.OrderState;
 import com.ssn.practica.model.Task;
+import com.ssn.practica.model.TaskState;
 
 public class SessionFactoryProvider {
 
@@ -27,16 +29,16 @@ public class SessionFactoryProvider {
 	public static SessionFactory getSessionFactory() {
 		if (factory == null) {
 			try {
-//				Configuration configuration = new Configuration().configure();
-//				StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-//						.applySettings(configuration.getProperties());
-//				factory = configuration.buildSessionFactory(builder.build());
+				Configuration configuration = new Configuration().configure();
+				StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+						.applySettings(configuration.getProperties());
+				factory = configuration.buildSessionFactory(builder.build());
 
 				factory = new Configuration().configure("hibernate.cfg.xml") //
 						.addAnnotatedClass(Task.class) //
 						.addAnnotatedClass(Answer.class) //
 						.buildSessionFactory();
-				init();
+				// init();
 			} catch (Throwable ex) {
 				System.err.println("Failed to create sessionFactory object." + ex);
 			}
@@ -56,6 +58,19 @@ public class SessionFactoryProvider {
 				answer.setDate(Calendar.getInstance().getTime());
 
 				session.save(answer);
+
+				Task task = new Task();
+				task.setTaskId("333");
+				task.setCountry("Romania");
+				task.setCity("Timisoara");
+				task.setDescription("Gasiti masinile rosii");
+				task.setDueDate(Calendar.getInstance().getTime());
+				task.setState(TaskState.NEW);
+				task.getAnswers().add(answer);
+
+				session.save(task);
+
+				answer.setTask(task);
 
 			}
 

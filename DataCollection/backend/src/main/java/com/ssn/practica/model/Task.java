@@ -1,5 +1,6 @@
 package com.ssn.practica.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +43,7 @@ public class Task {
 	private TaskState state;
 
 	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-	private List<Answer> answers;
+	private List<Answer> answers = new ArrayList<Answer>();
 
 	public Task() {
 		super();
