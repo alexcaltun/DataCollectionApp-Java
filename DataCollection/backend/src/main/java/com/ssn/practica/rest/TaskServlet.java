@@ -1,4 +1,4 @@
-package com.ssn.practica.dao;
+package com.ssn.practica.rest;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.ssn.practica.dao.TaskDAO;
 import com.ssn.practica.dto.TaskDTO;
 import com.ssn.practica.model.Task;
 
