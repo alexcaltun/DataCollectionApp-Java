@@ -5,15 +5,17 @@ import java.util.List;
 
 import com.ssn.practica.model.Answer;
 import com.ssn.practica.model.Task;
+import com.ssn.practica.model.TaskState;
 
 public class TaskDTO {
 	private Long id;
-	private Long taskId;
+	private String taskId;
 	private String country;
 	private String city;
 	private String zone;
 	private String description;
 	private Date dueDate;
+	private TaskState state;
 	private List<AnswerDTO> answersDTO;
 
 	public TaskDTO() {
@@ -28,11 +30,11 @@ public class TaskDTO {
 		this.id = id;
 	}
 
-	public Long getTaskId() {
+	public String getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(Long taskId) {
+	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
 
@@ -76,6 +78,14 @@ public class TaskDTO {
 		this.dueDate = dueDate;
 	}
 
+	public TaskState getState() {
+		return state;
+	}
+
+	public void setState(TaskState state) {
+		this.state = state;
+	}
+
 	public List<AnswerDTO> getAnswersDTO() {
 		return answersDTO;
 	}
@@ -93,6 +103,7 @@ public class TaskDTO {
 		taskDTO.setZone(task.getZone());
 		taskDTO.setDescription(task.getDescription());
 		taskDTO.setDueDate(task.getDueDate());
+		taskDTO.setState(task.getState());
 
 		for (Answer answer : task.getAnswers()) {
 			taskDTO.getAnswersDTO().add(AnswerDTO.fromAnswer(answer));

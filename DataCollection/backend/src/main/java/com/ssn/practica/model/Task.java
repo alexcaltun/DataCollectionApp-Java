@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +20,7 @@ public class Task {
 	private Long id;
 
 	@JoinColumn(nullable = false)
-	private Long taskId;
+	private String taskId;
 
 	@JoinColumn(nullable = false)
 	private String country;
@@ -35,6 +37,9 @@ public class Task {
 	@JoinColumn(nullable = false)
 	private Date dueDate;
 
+	@Enumerated(EnumType.STRING)
+	private TaskState state;
+
 	@OneToMany(mappedBy = "task")
 	private List<Answer> answers;
 
@@ -50,11 +55,11 @@ public class Task {
 		this.id = id;
 	}
 
-	public Long getTaskId() {
+	public String getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(Long taskId) {
+	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
 
@@ -96,6 +101,14 @@ public class Task {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+	public TaskState getState() {
+		return state;
+	}
+
+	public void setState(TaskState state) {
+		this.state = state;
 	}
 
 	public List<Answer> getAnswers() {
