@@ -17,10 +17,13 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	@JoinColumn(nullable = false)
 	private String answerId;
 
+	@JoinColumn(nullable = false)
 	private String answer;
 
+	@JoinColumn(nullable = false)
 	private Date date;
 
 	@ManyToOne(cascade = CascadeType.ALL)
