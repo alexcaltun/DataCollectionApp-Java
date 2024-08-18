@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,22 +20,22 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private String taskId;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private String country;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private String city;
 
-	@JoinColumn(nullable = true)
+	@Column(nullable = true)
 	private String zone;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private String description;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private Date dueDate;
 
 	@Enumerated(EnumType.STRING)

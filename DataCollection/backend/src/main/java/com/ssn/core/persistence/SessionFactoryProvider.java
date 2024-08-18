@@ -6,9 +6,10 @@
 
 package com.ssn.core.persistence;
 
+import java.util.Calendar;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.ssn.practica.model.Answer;
@@ -18,7 +19,7 @@ import com.ssn.practica.model.Task;
 public class SessionFactoryProvider {
 
 	public static void main(String[] args) {
-		SessionFactoryProvider.getSessionFactory();
+		SessionFactoryProvider.init();
 	}
 
 	private static SessionFactory factory;
@@ -26,10 +27,10 @@ public class SessionFactoryProvider {
 	public static SessionFactory getSessionFactory() {
 		if (factory == null) {
 			try {
-				Configuration configuration = new Configuration().configure();
-				StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-						.applySettings(configuration.getProperties());
-				factory = configuration.buildSessionFactory(builder.build());
+//				Configuration configuration = new Configuration().configure();
+//				StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+//						.applySettings(configuration.getProperties());
+//				factory = configuration.buildSessionFactory(builder.build());
 
 				factory = new Configuration().configure("hibernate.cfg.xml") //
 						.addAnnotatedClass(Task.class) //
@@ -49,6 +50,12 @@ public class SessionFactoryProvider {
 
 			@Override
 			protected void executeBusinessLogic(Session session) {
+				Answer answer = new Answer();
+				answer.setAnswer("cevaa");
+				answer.setAnswerId("123");
+				answer.setDate(Calendar.getInstance().getTime());
+
+				session.save(answer);
 
 			}
 

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +18,14 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private String answerId;
 
-	@JoinColumn(nullable = false)
+	@Column(nullable = false)
 	private String answer;
 
-	@JoinColumn(nullable = false)
-	private Date date;
+	@Column(nullable = false)
+	private Date answerDate;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "task_id", nullable = true)
@@ -51,11 +52,11 @@ public class Answer {
 	}
 
 	public Date getDate() {
-		return date;
+		return answerDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Date answerDate) {
+		this.answerDate = answerDate;
 	}
 
 	public Task getTask() {
@@ -76,8 +77,8 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", answerId=" + answerId + ", answer=" + answer + ", date=" + date + "taskId= "
-				+ task.getTaskId() + "]";
+		return "Answer [id=" + id + ", answerId=" + answerId + ", answer=" + answer + ", date=" + answerDate
+				+ "taskId= " + task.getTaskId() + "]";
 	}
 
 	@Override
