@@ -3,6 +3,7 @@ package com.ssn.practica.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,17 +17,14 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@JoinColumn(nullable = false)
 	private String answerId;
 
-	@JoinColumn(nullable = false)
 	private String answer;
 
-	@JoinColumn(nullable = false)
 	private Date date;
 
-	@ManyToOne
-	@JoinColumn(name = "task_id", nullable = false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "task_id", nullable = true)
 	private Task task;
 
 	public Answer() {

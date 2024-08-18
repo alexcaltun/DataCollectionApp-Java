@@ -40,7 +40,7 @@ public class Task {
 	@Enumerated(EnumType.STRING)
 	private TaskState state;
 
-	@OneToMany(mappedBy = "task")
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
 	private List<Answer> answers;
 
 	public Task() {
