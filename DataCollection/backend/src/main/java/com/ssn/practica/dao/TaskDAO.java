@@ -4,11 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import com.ssn.core.persistence.WithSessionAndTransaction;
 import com.ssn.practica.model.Task;
-import com.ssn.practica.model.TaskState;
 
 public class TaskDAO {
 
@@ -55,24 +53,23 @@ public class TaskDAO {
 		}.run();
 	}
 
-	public List<Task> getTaskByTaskId(String taskId) {
-		return new WithSessionAndTransaction<List<Task>>() {
+	public Task getTaskByTaskId(String taskId) {
+		return new WithSessionAndTransaction<Task>() {
 			@Override
 			protected void executeBusinessLogic(Session session) {
-				List<Task> tasks = session.createQuery("SELECT t FROM Task t WHERE t.taskId = :taskId", Task.class)
-						.setParameter("taskId", taskId).getResultList();
-				setReturnValue(tasks);
+				Task task = session.createQuery("SELECT t FROM Task t WHERE t.taskId = :taskId", Task.class)
+						.setParameter("taskId", taskId).uniqueResult();
+				setReturnValue(task);
 			}
 		}.run();
 	}
 
-	public List<Task> getTasksByState(TaskState state) {
+	public List<Task> getTasksByState(String state) {
 		return new WithSessionAndTransaction<List<Task>>() {
 			@Override
 			protected void executeBusinessLogic(Session session) {
-				Query query = session.createQuery("from Task where state = :state");
-				query.setParameter("state", state);
-				List<Task> tasks = query.getResultList();
+				List<Task> tasks = session.createQuery("SELECT t FROM Task t WHERE t.state = :state", Task.class)
+						.setParameter("state", state).getResultList();
 				setReturnValue(tasks);
 			}
 		}.run();
@@ -82,9 +79,8 @@ public class TaskDAO {
 		return new WithSessionAndTransaction<List<Task>>() {
 			@Override
 			protected void executeBusinessLogic(Session session) {
-				Query query = session.createQuery("from Task where dueDate = :dueDate");
-				query.setParameter("dueDate", dueDate);
-				List<Task> tasks = query.getResultList();
+				List<Task> tasks = session.createQuery("SELECT t FROM Task t WHERE t.dueDate = :dueDate", Task.class)
+						.setParameter("dueDate", dueDate).getResultList();
 				setReturnValue(tasks);
 			}
 		}.run();

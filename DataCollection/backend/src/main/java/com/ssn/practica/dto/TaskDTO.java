@@ -1,5 +1,6 @@
 package com.ssn.practica.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -110,5 +111,27 @@ public class TaskDTO {
 		}
 
 		return taskDTO;
+	}
+
+	public static Task fromTaskDTO(TaskDTO taskDTO) {
+		Task task = new Task();
+
+		task.setId(taskDTO.getId());
+		task.setCountry(taskDTO.getCountry());
+		task.setCity(taskDTO.getCity());
+		task.setZone(taskDTO.getZone());
+		task.setDescription(taskDTO.getDescription());
+		task.setDueDate(taskDTO.getDueDate());
+		task.setState(taskDTO.getState());
+
+		List<Answer> answers = new ArrayList();
+
+		for (AnswerDTO answerDTO : taskDTO.getAnswersDTO()) {
+			answers.add(AnswerDTO.fromAnswerDTO(answerDTO));
+		}
+
+		task.setAnswers(answers);
+
+		return task;
 	}
 }

@@ -67,7 +67,7 @@ public class AnswerDTO {
 		answer.setDate(answerDTO.getDate());
 
 		TaskDAO taskDAO = new TaskDAO();
-		Task task = taskDAO.getTaskByTaskId(answerDTO.getTaskTaskId()).getFirst();
+		Task task = taskDAO.getTaskByTaskId(answerDTO.getTaskTaskId());
 
 		answer.setTask(task);
 		return answer;
