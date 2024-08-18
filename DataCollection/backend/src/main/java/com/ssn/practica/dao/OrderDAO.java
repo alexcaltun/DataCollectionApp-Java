@@ -14,7 +14,6 @@ public class OrderDAO {
 
 	public List<Order> getOrdersByState(OrderState state) {
 		return new WithSessionAndTransaction<List<Order>>() {
-			// lol
 			@Override
 			protected void executeBusinessLogic(Session session) {
 				Query query = session.createQuery("from Order where state = :state");
