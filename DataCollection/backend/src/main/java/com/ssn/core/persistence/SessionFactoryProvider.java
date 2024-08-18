@@ -20,6 +20,11 @@ import com.ssn.practica.model.User;
  */
 
 public class SessionFactoryProvider {
+
+	public static void main(String[] args) {
+		SessionFactoryProvider.init();
+	}
+
 	private static SessionFactory factory;
 
 	public static SessionFactory getSessionFactory() {
