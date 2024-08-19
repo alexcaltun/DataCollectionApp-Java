@@ -39,6 +39,9 @@ public class Task {
 	@Column(nullable = false)
 	private Date dueDate;
 
+	@Column(nullable = false)
+	private double price;
+
 	@Enumerated(EnumType.STRING)
 	private TaskState state;
 
@@ -103,6 +106,14 @@ public class Task {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public TaskState getState() {

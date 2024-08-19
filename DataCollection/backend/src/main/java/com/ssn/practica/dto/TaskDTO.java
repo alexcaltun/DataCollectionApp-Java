@@ -16,6 +16,7 @@ public class TaskDTO {
 	private String zone;
 	private String description;
 	private Date dueDate;
+	private double price;
 	private TaskState state;
 	private List<AnswerDTO> answersDTO;
 
@@ -79,6 +80,14 @@ public class TaskDTO {
 		this.dueDate = dueDate;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public TaskState getState() {
 		return state;
 	}
@@ -104,6 +113,7 @@ public class TaskDTO {
 		taskDTO.setZone(task.getZone());
 		taskDTO.setDescription(task.getDescription());
 		taskDTO.setDueDate(task.getDueDate());
+		taskDTO.setPrice(task.getPrice());
 		taskDTO.setState(task.getState());
 
 		for (Answer answer : task.getAnswers()) {
@@ -122,9 +132,10 @@ public class TaskDTO {
 		task.setZone(taskDTO.getZone());
 		task.setDescription(taskDTO.getDescription());
 		task.setDueDate(taskDTO.getDueDate());
+		task.setPrice(taskDTO.getPrice());
 		task.setState(taskDTO.getState());
 
-		List<Answer> answers = new ArrayList();
+		List<Answer> answers = new ArrayList<Answer>();
 
 		for (AnswerDTO answerDTO : taskDTO.getAnswersDTO()) {
 			answers.add(AnswerDTO.fromAnswerDTO(answerDTO));

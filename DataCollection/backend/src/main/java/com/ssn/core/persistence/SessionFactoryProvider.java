@@ -65,7 +65,7 @@ public class SessionFactoryProvider {
 				task.setCity("Timisoara");
 				task.setDescription("Gasiti masinile rosii");
 				task.setDueDate(Calendar.getInstance().getTime());
-				task.setState(TaskState.NEW);
+				task.setState(TaskState.UNASSIGNED);
 				task.getAnswers().add(answer);
 
 				session.save(task);
