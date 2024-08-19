@@ -43,6 +43,8 @@ public class SessionFactoryProvider {
 				System.err.println("Failed to create sessionFactory object." + ex);
 			}
 		}
+		{
+		}
 
 		return factory;
 	}
